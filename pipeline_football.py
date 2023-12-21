@@ -13,7 +13,7 @@ def get_player_stats(player_id):
     response = requests.get(url)
 
     data = response.json().get('fixtures', []) 
-    
+
 #only selected the 3 columns from this API that I need to aggregate later on. The player, gameweek and difficulty score 
     fixtures_data = [
         {
@@ -41,7 +41,7 @@ players_df = pd.DataFrame(players)
 teams_df = pd.DataFrame(teams)
 events_df = pd.DataFrame(events)
 
-#clean up the deadline_time column. Ended up not needed, but worth it being done for future analysis.
+#clean up the deadline_time column. Ended up not needed, but worth it being done for future analysis. 
 events_df['gameweek_date'] = pd.to_datetime(events_df['deadline_time']).dt.date
 events_df = events_df.drop(columns=['deadline_time'])
 
